@@ -1,0 +1,8 @@
+---
+- name: Playbook that installs and deploys SunCavanaugh app
+  hosts: all
+  collections:
+    - container.podman
+  roles:
+    - wave.config_management.rhel
+    - wave.config_management.app
