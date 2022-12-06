@@ -7,7 +7,7 @@
   become: true
 
 - name: Configure firewalld ports for SunCavanaugh app
-  ansible.posix.firewalld.
+  ansible.posix.firewalld:
     port: "{{ host_port }}/tcp"
     permanent: true
     state: enabled
