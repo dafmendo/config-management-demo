@@ -5,4 +5,4 @@
       - podman
       - firewalld
     state: present
-
+  become: true
