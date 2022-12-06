@@ -5,7 +5,6 @@
     image: quay.io/acme_corp/eda-app:suncavanaugh
     state: started
     recreate: true
-    network: host
     ports:
         - "{{ host_port }}:{{ container_port }}"
     env:
