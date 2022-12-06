@@ -1,0 +1,17 @@
+---
+- name: Create the SunCavanaugh application
+  containers.podman.podman_container:
+    name: colors
+    image: quay.io/acme_corp/eda-app:suncavanaugh
+    state: started
+    recreate: true
+    network: host
+    ports:
+        - "{{ host_port }}:{{ container_port }}"
+    env:
+        APP_COLOR: "{{ color }}"
+  register: container
+
+- name: Print SunCavanaugh container information
+  ansible.builtin.debug:
+    var: container

@@ -1,0 +1,4 @@
+---
+# tasks file for rhel
+- include_tasks: 10_packages.yml
+- include_tasks: 20_firewalld.yml
