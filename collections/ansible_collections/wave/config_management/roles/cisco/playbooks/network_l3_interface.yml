@@ -1,6 +1,6 @@
 ---
 - name: configure l3 interface
-  hosts: routers
+  hosts: all
   gather_facts: no
 
   tasks:
