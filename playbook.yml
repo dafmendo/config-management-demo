@@ -1,9 +1,8 @@
 ---
-- name: Playbook that installs and deploys SunCavanaugh app
+- name: Playbook that configures a Cisco router
   hosts: all
   collections:
-    - containers.podman
-    - ansible.posix
+    - cisco.ios
+    - ansible.netcommon
   roles:
-    - wave.config_management.rhel
-    - wave.config_management.app
+    - wave.config_management.cisco
