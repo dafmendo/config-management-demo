@@ -33,4 +33,3 @@
     - name: include correct role for network device type
       include_role:
         name: "../roles/vlans"
-      when: ansible_network_os is defined
