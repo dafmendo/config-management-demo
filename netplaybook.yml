@@ -1,6 +1,6 @@
 ---
 - name: Playbook that configures a Cisco router
-  hosts: all
+  hosts: cisco
   collections:
     - cisco.ios
     - ansible.netcommon
