@@ -1,7 +1,6 @@
 ---
 - name: CONFIGURE NETWORK TIME
   hosts: all
-  connection: network_cli
   gather_facts: no
 
   vars:
