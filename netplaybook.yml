@@ -1,0 +1,8 @@
+---
+- name: Playbook that configures a Cisco router
+  hosts: all
+  collections:
+    - cisco.ios
+    - ansible.netcommon
+  roles:
+    - wave.config_management.cisco
