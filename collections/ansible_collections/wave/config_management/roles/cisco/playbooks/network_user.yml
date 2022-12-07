@@ -1,6 +1,6 @@
 ---
 - name: configure user on network devices
-  hosts: routers
+  hosts: all
   gather_facts: no
 
   tasks:
