@@ -4,7 +4,9 @@
   gather_facts: no
 
   tasks:
-
+    - name: Gather router facts
+      cisco.ios.facts:
+      
     - name: load system role
       include_role:
         name: "../roles/cisco"
