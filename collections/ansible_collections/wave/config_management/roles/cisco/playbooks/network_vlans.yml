@@ -17,6 +17,9 @@
   #   vlan_id: 20
 
   tasks:
+    - name: Gather router facts
+      cisco.ios.facts:
+      
     - name: assert that VLAN config was sent
       assert:
         that:
