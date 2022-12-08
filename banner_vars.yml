@@ -1,0 +1,2 @@
+- network_banner:  "{{ net_banner | default(None) }}"
+- banner_type: "{{ net_type | default('login') }}"
