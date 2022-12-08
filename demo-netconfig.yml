@@ -4,6 +4,12 @@
   gather_facts: no
   vars:
     ansible_connection: network_cli
+    l3_interface:
+      - ipv4:
+        - address: "{{interface_ipv4 | default(omit) }}"
+        ipv6:
+        - address: "{{interface_ipv6 | default(omit) }}"
+
     
   tasks:
     - name: Gather router facts
@@ -12,3 +18,8 @@
     - name: Display version
       debug:
         msg: "The IOS version is: {{ ansible_net_version }}"
+    
+    name: "{{interface_name}}"
+    - name: configure layer3 interface for ios
+      ios_l3_interfaces:
+        config: "{{l3_interface}}"
