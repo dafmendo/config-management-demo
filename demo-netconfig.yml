@@ -25,6 +25,6 @@
       when: ansible_network_os is defined
 
     - name: configure Cisco IOS vlans
-      ios.vlans:
+      ios_vlans:
           state: "{{ vlan_state }}"
           config: "{{ vlan_config }}"
