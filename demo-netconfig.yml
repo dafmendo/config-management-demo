@@ -9,7 +9,7 @@
         - address: "{{interface_ipv4 | default(omit) }}"
         ipv6:
         - address: "{{interface_ipv6 | default(omit) }}"
-    name: "{{interface_name}}"
+      name: "{{interface_name}}"
     
   tasks:
     - name: Gather router facts
