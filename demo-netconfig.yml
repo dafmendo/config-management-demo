@@ -2,14 +2,9 @@
 - name: Gather information from routers
   hosts: all
   gather_facts: no
-  vars:
-    ansible_connection: network_cli
-    l3_interface:
-      - ipv4:
-        - address: "{{interface_ipv4 | default(omit) }}"
-        ipv6:
-        - address: "{{interface_ipv6 | default(omit) }}"
-      name: "{{interface_name}}"
+  
+  vars_files:
+    - if_vars.yml
     
   tasks:
     - name: Gather router facts
