@@ -4,10 +4,10 @@ acl:
     - name: std_acl
       acl_type: standard
       aces:
-      - grant: permit
+      - grant: deny
         source:
           address: 192.168.1.21
-      - grant: permit
+      - grant: deny
         source:
           address: 192.168.2.0
           wildcard_bits: 0.0.0.255
