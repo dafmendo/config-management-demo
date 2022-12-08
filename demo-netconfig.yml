@@ -6,7 +6,7 @@
   vars_files:
     - if_var.yml
     - ntp_var.yml
-    - vlans_var.yml
+    - snmp_var.yml
     
   tasks:
     - name: Gather router facts
@@ -55,7 +55,7 @@
         privilege: "{{network_privilege | default(omit, True) }}"
         configured_password: "{{network_configured_password | default(omit, True) }}"
 
-    - name: configure Cisco IOS vlans
-      cisco.ios.vlans:
-        state: "{{ vlan_state }}"
-        config: "{{ vlan_config }}"
+    - name: configure Cisco IOS SNMP
+      cisco.ios.snmp:
+        ansible_snmp_community: "{{ snmp_community }}"
+        ansible_host: "{{ snmp_host }}"
