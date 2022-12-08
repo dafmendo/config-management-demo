@@ -9,8 +9,13 @@
     - banner_vars.yml
     
   tasks:
-    - name: Gather router facts
+    - name: Gather IOSXE router facts
       cisco.ios.facts:
+      when: ('ios' in ansible_network_os)
+      
+    - name: Gather EOS router facts
+      arista.eos.facts:
+      when: ('eos' in ansible_network_os)
       
     - name: Display OS version
       debug:
