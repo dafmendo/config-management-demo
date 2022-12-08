@@ -4,7 +4,7 @@ acleos:
     - name: std_acl
       aces:
       - sequence: 20
-        grant: permit
+        grant: deny
         source:
           address: 192.168.1.22
           wildcard_bits: 0.0.0.255
