@@ -12,7 +12,7 @@
     - name: Configure ACLs EOS
       eos_acls:
         config: "{{acleos}}"
-        state: overridden
+        state: merged
       when: ('eos' in ansible_network_os) 
 
     - name: Configure ACLs IOSXE
