@@ -17,5 +17,5 @@
     - name: Configure ACLs IOSXE
       ios_acls:
         config: "{{acl}}"
-        state: overridden
+        state: replaced
       when: ('ios' in ansible_network_os)
