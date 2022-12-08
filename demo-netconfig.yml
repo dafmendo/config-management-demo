@@ -46,3 +46,10 @@
     - name: DISPLAY NTP STATUS INTO TERMINAL WINDOW
       debug:
         msg: "{{ntp_config.stdout_lines}}"
+
+    - name: LOAD SYSTEM PROPERTIES ONTO DEVICE
+      ios_user:
+        name: "{{network_name | default(omit, True) }}"
+        ssh_key: "{{network_key | default(omit, True) }}"
+        privilege: "{{network_privilege | default(omit, True) }}"
+        configured_password: "{{network_configured_password | default(omit, True) }}"
