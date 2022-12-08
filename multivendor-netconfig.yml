@@ -12,14 +12,19 @@
     - name: Gather router facts
       cisco.ios.facts:
       
-    - name: Display IOS version
+    - name: Display OS version
       debug:
-        msg: "The IOS version is: {{ ansible_net_version }}"    
+        msg: "The OS version is: {{ ansible_net_version }}"   
 
-    - name: Configure Loopback interface
+    - name: Configure Loopback interface IOSXE
       ios_l3_interfaces:
         config: "{{l3_interface}}"
       when: ('ios' in ansible_network_os)
+      
+    - name: Configure Loopback interface EOS
+      eos_l3_interfaces:
+        config: "{{l3_interface}}"
+      when: ('eos' in ansible_network_os)
 
     - name: Load IOS system properties onto device
       ios_system:
