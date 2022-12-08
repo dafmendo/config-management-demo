@@ -1,0 +1,14 @@
+acleos:
+- afi: ipv4
+  acls:
+    - name: std_acl
+      aces:
+      - sequence: 10
+        grant: permit
+        source:
+          address: 192.168.1.21
+          wildcard_bits: 0.0.0.255
+        destination:
+          any: true
+        
+
