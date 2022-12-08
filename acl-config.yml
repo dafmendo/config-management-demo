@@ -4,7 +4,8 @@
   gather_facts: no
   
   vars_files:
-    - acl_var.yml
+    - acleos_var.yml
+    - aclios_var.yml
     
   tasks:
       
