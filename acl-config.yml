@@ -17,6 +17,6 @@
 
     - name: Configure ACLs IOSXE
       ios_acls:
-        config: "{{acl}}"
+        config: "{{acleos}}"
         state: replaced
       when: ('ios' in ansible_network_os)
