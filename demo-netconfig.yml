@@ -6,7 +6,7 @@
   vars_files:
     - if_var.yml
     - ntp_var.yml
-    - snmp_var.yml
+    - banner_vars.yml
     
   tasks:
     - name: Gather router facts
