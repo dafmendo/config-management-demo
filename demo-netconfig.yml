@@ -2,7 +2,9 @@
 - name: Gather information from routers
   hosts: all
   gather_facts: no
-
+  vars:
+    ansible_connection: network_cli
+    
   tasks:
     - name: Gather router facts
       cisco.ios.facts:
