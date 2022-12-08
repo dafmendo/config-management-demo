@@ -1,6 +1,6 @@
 vlan_state:  "{{ net_vlan_state | default('merged') }}"
 vlan_config: "{{ net_vlan_config | default('') }}"
-net_vlan_state: overridden
+net_vlan_state: merged
 net_vlan_config:
   - name: Desktops
     vlan_id: 10
@@ -12,5 +12,3 @@ net_vlan_config:
     vlan_id: 333
   - name: Printer
     vlan_id: 444
-  - name: BostonHQ
-    vlan_id: 1234
