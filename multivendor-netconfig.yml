@@ -1,0 +1,67 @@
+---
+- name: Setup management Cisco IOSXE router config
+  hosts: all
+  gather_facts: no
+  
+  vars_files:
+    - if_var.yml
+    - ntp_var.yml
+    - banner_vars.yml
+    
+  tasks:
+    - name: Gather router facts
+      cisco.ios.facts:
+      
+    - name: Display IOS version
+      debug:
+        msg: "The IOS version is: {{ ansible_net_version }}"    
+
+    - name: Configure Loopback interface
+      ios_l3_interfaces:
+        config: "{{l3_interface}}"
+      when: ('ios' in ansible_network_os)
+
+    - name: Load IOS system properties onto device
+      ios_system:
+        domain_name: "{{network_domain_name | default(omit, True) }}"
+        domain_search: "{{network_domain_search | default(omit, True)}}"
+        hostname: "{{network_hostname | default(omit, True)}}"
+        lookup_source: "{{network_lookup_source | default(omit, True) }}"
+        name_servers: "{{network_name_servers | default(omit, True) }}"
+      when: ('ios' in ansible_network_os)
+
+    - assert:
+        that:
+          - "ntp_server | ipaddr"
+        msg: "'ntp_server' must be a valid IPv4 address"
+
+    - name: Configure NTP
+      ios_config:
+        lines: "ntp server {{ntp_server}}"
+      when: ('ios' in ansible_network_os)
+
+    - name: Fetch NTP status
+      ios_command:
+        commands:
+          - show ntp config
+          - show ntp status
+      register: ntp_config
+      when: ('ios' in ansible_network_os)
+
+    - name: Display NTP status
+      debug:
+        msg: "{{ntp_config.stdout_lines}}"
+
+    - name: Configure management user
+      ios_user:
+        name: "{{network_name | default(omit, True) }}"
+        ssh_key: "{{network_key | default(omit, True) }}"
+        privilege: "{{network_privilege | default(omit, True) }}"
+        configured_password: "{{network_configured_password | default(omit, True) }}"
+      when: ('ios' in ansible_network_os)
+        
+    - name: Add banner
+      ios_banner:
+        text: "{{ network_banner }}"
+        banner: "{{ banner_type }}"
+      when: ('ios' in ansible_network_os)
