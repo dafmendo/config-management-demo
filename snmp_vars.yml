@@ -1,0 +1,2 @@
+snmp_community: public
+snmp_host: "10.116.100.12"
