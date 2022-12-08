@@ -11,5 +11,5 @@
     - name: Configure ACLs EOS
       eos_acls:
         config: "{{acleos}}"
-        state: merged
+        state: override
       when: ('eos' in ansible_network_os) 
