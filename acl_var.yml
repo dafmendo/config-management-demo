@@ -1,17 +1,3 @@
-acl:
-- afi: ipv4
-  acls:
-    - name: std_acl
-      acl_type: standard
-      aces:
-      - grant: deny
-        source:
-          address: 192.168.1.200
-      - grant: deny
-        source:
-          address: 192.168.2.0
-          wildcard_bits: 0.0.0.255
-
 acleos:
 - afi: ipv4
   acls:
@@ -25,3 +11,16 @@ acleos:
         destination:
           any: true
         
+acl:
+- afi: ipv4
+  acls:
+    - name: std_acl
+      acl_type: standard
+      aces:
+      - grant: deny
+        source:
+          address: 192.168.1.200
+      - grant: deny
+        source:
+          address: 192.168.2.0
+          wildcard_bits: 0.0.0.255
