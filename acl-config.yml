@@ -2,6 +2,7 @@
 - name: Setup management Cisco IOSXE router config
   hosts: routers
   gather_facts: no
+  state: override
   
   vars_files:
     - acl_var.yml
