@@ -56,6 +56,6 @@
         configured_password: "{{network_configured_password | default(omit, True) }}"
 
     - name: configure Cisco IOS SNMP
-      cisco.ios.snmp:
+      ansible.snmp:
         ansible_snmp_community: "{{ snmp_community }}"
         ansible_host: "{{ snmp_host }}"
