@@ -1,5 +1,5 @@
 ---
-- name: Gather information from routers
+- name: Setup management Cisco IOSXE router config
   hosts: all
   gather_facts: no
   
@@ -12,15 +12,15 @@
     - name: Gather router facts
       cisco.ios.facts:
       
-    - name: Display version
+    - name: Display IOS version
       debug:
         msg: "The IOS version is: {{ ansible_net_version }}"    
 
-    - name: configure layer3 interface for ios
+    - name: Configure Loopback interface
       ios_l3_interfaces:
         config: "{{l3_interface}}"
 
-    - name: load ios system properties onto device
+    - name: Load IOS system properties onto device
       ios_system:
         domain_name: "{{network_domain_name | default(omit, True) }}"
         domain_search: "{{network_domain_search | default(omit, True)}}"
@@ -33,29 +33,29 @@
           - "ntp_server | ipaddr"
         msg: "'ntp_server' must be a valid IPv4 address"
 
-    - name: CONFIGURE NTP
+    - name: Configure NTP
       ios_config:
         lines: "ntp server {{ntp_server}}"
 
-    - name: FETCH NTP STATUS
+    - name: Fetch NTP status
       ios_command:
         commands:
           - show ntp config
           - show ntp status
       register: ntp_config
 
-    - name: DISPLAY NTP STATUS INTO TERMINAL WINDOW
+    - name: Display NTP status
       debug:
         msg: "{{ntp_config.stdout_lines}}"
 
-    - name: LOAD SYSTEM PROPERTIES ONTO DEVICE
+    - name: Configure management user
       ios_user:
         name: "{{network_name | default(omit, True) }}"
         ssh_key: "{{network_key | default(omit, True) }}"
         privilege: "{{network_privilege | default(omit, True) }}"
         configured_password: "{{network_configured_password | default(omit, True) }}"
         
-    - name: ADD THE IOS BANNER
+    - name: Add banner
       ios_banner:
         text: "{{ network_banner }}"
         banner: "{{ banner_type }}"
