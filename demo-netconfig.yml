@@ -4,7 +4,7 @@
   gather_facts: no
   
   vars_files:
-    - if_vars.yml
+    - if_var.yml
     
   tasks:
     - name: Gather router facts
