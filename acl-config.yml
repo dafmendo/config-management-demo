@@ -1,5 +1,5 @@
 ---
-- name: Setup management Cisco IOSXE router config
+- name: Configure ACLS
   hosts: routers
   gather_facts: no
   
@@ -7,15 +7,15 @@
     - acl_var.yml
     
   tasks:
-
-    - name: Configure ACLs IOSXE
-      ios_acls:
-        config: "{{acl}}"
-        state: overridden
-      when: ('ios' in ansible_network_os)
       
     - name: Configure ACLs EOS
       eos_acls:
         config: "{{acleos}}"
         state: overridden
       when: ('eos' in ansible_network_os) 
+
+    - name: Configure ACLs IOSXE
+      ios_acls:
+        config: "{{acl}}"
+        state: overridden
+      when: ('ios' in ansible_network_os)
