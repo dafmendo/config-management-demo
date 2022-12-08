@@ -59,6 +59,11 @@
         lines: "ntp server {{ntp_server}}"
       when: ('ios' in ansible_network_os)
 
+    - name: Configure NTP EOS
+      eos_config:
+        lines: "ntp server {{ntp_server}}"
+      when: ('eos' in ansible_network_os)
+
     - name: Fetch NTP status
       ios_command:
         commands:
@@ -70,16 +75,6 @@
           - show ntp status
       when: ('eos' in ansible_network_os)
       register: ntp_config
-      
-      
-    - name: Display NTP status Cisco IOSXE
-      debug:
-        msg: "{{ntp_config_ios.stdout_lines}}"
-
-    - name: Configure NTP EOS
-      eos_config:
-        lines: "ntp server {{ntp_server}}"
-      when: ('eos' in ansible_network_os)
 
     - name: Display NTP status
       debug:
