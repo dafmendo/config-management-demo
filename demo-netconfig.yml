@@ -1,6 +1,6 @@
 ---
 - name: Setup management Cisco IOSXE router config
-  hosts: all
+  hosts: cisco
   gather_facts: no
   
   vars_files:
