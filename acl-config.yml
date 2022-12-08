@@ -4,17 +4,9 @@
   gather_facts: no
   
   vars_files:
-    - acleos_var.yml
     - aclios_var.yml
     
   tasks:
-      
-    - name: Configure ACLs EOS
-      eos_acls:
-        config: "{{acleos}}"
-        state: replaced
-      when: ('eos' in ansible_network_os) 
-
     - name: Configure ACLs IOSXE
       ios_acls:
         config: "{{acl}}"
