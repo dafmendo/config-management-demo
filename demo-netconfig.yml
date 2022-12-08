@@ -7,23 +7,6 @@
     - name: Gather router facts
       cisco.ios.facts:
       
-    - name: configure layer3 interface for ios
-      ios_l3_interfaces:
-          config: "{{l3_interface}}"
-
-    - name: ADD THE IOS BANNER
-      ios_banner:
-          text: "{{ network_banner }}"
-          banner: "{{ banner_type }}"
-
-    - name: LOAD SYSTEM PROPERTIES ONTO DEVICE
-      ios_user:
-          name: "{{network_name | default(omit, True) }}"
-          ssh_key: "{{network_key | default(omit, True) }}"
-          privilege: "{{network_privilege | default(omit, True) }}"
-          configured_password: "{{network_configured_password | default(omit, True) }}"
-
-    - name: configure Cisco IOS vlans
-      ios_vlans:
-          state: "{{ vlan_state }}"
-          config: "{{ vlan_config }}"
+    - name: Display version
+      debug:
+        msg: "The IOS version is: {{ ansible_net_version }}"
