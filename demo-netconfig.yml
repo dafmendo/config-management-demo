@@ -54,8 +54,8 @@
         ssh_key: "{{network_key | default(omit, True) }}"
         privilege: "{{network_privilege | default(omit, True) }}"
         configured_password: "{{network_configured_password | default(omit, True) }}"
-
-    - name: configure Cisco IOS SNMP
-      ansible.snmp:
-        ansible_snmp_community: "{{ snmp_community }}"
-        ansible_host: "{{ snmp_host }}"
+        
+    - name: ADD THE IOS BANNER
+      ios_banner:
+        text: "{{ network_banner }}"
+        banner: "{{ banner_type }}"
