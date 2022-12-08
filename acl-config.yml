@@ -23,5 +23,5 @@
     - name: Configure Loopback interface EOS
       eos_acls:
         config: "{{acleos}}"
-        state: overriden
+        state: overridden
       when: ('eos' in ansible_network_os) 
