@@ -80,13 +80,12 @@
       eos_command:
         commands:
           - show ntp status
-          - show ntp associations
-      register: ntp_config
+      register: ntp_config_eos
       when: ('eos' in ansible_network_os)
 
     - name: Display NTP status Arista EOS
       debug:
-        msg: "{{ntp_config.stdout_lines}}"
+        msg: "{{ntp_config_eos.stdout_lines}}"
 
     - name: Configure management user IOSXE
       ios_user:
