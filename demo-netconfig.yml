@@ -5,6 +5,7 @@
   
   vars_files:
     - if_var.yml
+    - ntp_var.yml
     
   tasks:
     - name: Gather router facts
@@ -26,14 +27,6 @@
         lookup_source: "{{network_lookup_source | default(omit, True) }}"
         name_servers: "{{network_name_servers | default(omit, True) }}"
 
-- name: CONFIGURE NETWORK TIME
-  hosts: all
-  gather_facts: no
-
-  vars:
-
-
-  tasks:
     - assert:
         that:
           - "ntp_server | ipaddr"
