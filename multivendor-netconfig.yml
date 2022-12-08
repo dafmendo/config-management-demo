@@ -64,22 +64,6 @@
         lines: "ntp server {{ntp_server}}"
       when: ('eos' in ansible_network_os)
 
-    - name: Fetch NTP status
-      ios_command:
-        commands:
-          - show ntp config
-          - show ntp status
-      when: ('ios' in ansible_network_os)
-      eos_command:
-        commands:
-          - show ntp status
-      when: ('eos' in ansible_network_os)
-      register: ntp_config
-
-    - name: Display NTP status
-      debug:
-        msg: "{{ntp_config.stdout_lines}}"
-
     - name: Configure management user IOSXE
       ios_user:
         name: "{{network_name | default(omit, True) }}"
