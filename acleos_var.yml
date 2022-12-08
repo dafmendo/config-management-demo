@@ -3,7 +3,7 @@ acleos:
   acls:
     - name: std_acl
       aces:
-      - sequence: 20
+      - sequence: 10
         grant: deny
         source:
           address: 192.168.1.22
