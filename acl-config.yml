@@ -8,7 +8,7 @@
     
   tasks:
     - name: Configure ACLs IOSXE
-      ios_acls:
+      cisco.ios.ios_acls:
         config: "{{acl}}"
         state: overridden
       when: ('ios' in ansible_network_os)
