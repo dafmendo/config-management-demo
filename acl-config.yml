@@ -5,6 +5,7 @@
   
   vars_files:
     - aclios_var.yml
+    - acleos_var.yml
     
   tasks:
     - name: Configure ACLs IOSXE
@@ -12,3 +13,10 @@
         config: "{{acl}}"
         state: overridden
       when: ('ios' in ansible_network_os)
+
+    - name: Configure ACLs EOS
+      arista.eos.eos_acls:
+        config: "{{acl}}"
+        state: overridden
+      when: ('eos' in ansible_network_os)
+    
