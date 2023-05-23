@@ -16,7 +16,7 @@
 
     - name: Configure ACLs EOS
       arista.eos.eos_acls:
-        config: "{{acl}}"
+        config: "{{acleos}}"
         state: overridden
       when: ('eos' in ansible_network_os)
     
